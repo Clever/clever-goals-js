@@ -29,14 +29,14 @@ export default class CleverGoals {
     this.districtToken = options.districtToken;
     this.studentCleverId = options.studentCleverId;
     // API URL is configurable for testing
-    this.apiURL = options._apiURL || "https://api.clever.com";
+    this.apiURL = options.apiURL || "https://api.clever.com";
   }
 
   async recordCumulativeUsage(value) {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
       this.districtToken,
-      { usage: value }
+      { usage: value },
     );
   }
 
@@ -44,7 +44,7 @@ export default class CleverGoals {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
       this.districtToken,
-      { progress: value }
+      { progress: value },
     );
   }
 
@@ -52,7 +52,7 @@ export default class CleverGoals {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
       this.districtToken,
-      { usage: value }
+      { usage: value },
     );
   }
 
@@ -60,7 +60,7 @@ export default class CleverGoals {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
       this.districtToken,
-      { progress: value }
+      { progress: value },
     );
   }
 

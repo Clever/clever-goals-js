@@ -7,6 +7,7 @@ plugins:
 env:
   jest: true
   es6: true
+  browser: true
 rules:
   max-len: ["error", 120, 2, { # 120 max len, 2 tab width
     ignoreUrls: true,
