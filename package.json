@@ -1,10 +1,11 @@
 {
   "name": "reports-js-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Javascript client library for the public Goals API",
-  "main": "dist/index.js",
+  "main": "dist/clever-goals.js",
   "scripts": {
-    "build": "tsc",
+    "dev-build": "webpack --watch",
+    "build": "webpack",
     "test": "jest"
   },
   "jest": {
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/jest": "^18.1.1",
     "@types/node": "^7.0.4",
+    "awesome-typescript-loader": "^3.1.3",
     "babel-eslint": "^7.1.1",
     "eslint": "3.14.1",
     "eslint-config-airbnb": "^5.0.1",
@@ -32,6 +34,10 @@
     "jest": "^18.1.0",
     "ts-jest": "^18.0.3",
     "tslint": "^3.15.1",
-    "typescript": "^2.1.5"
+    "typescript": "^2.1.5",
+    "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^2.0.3"
   }
 }

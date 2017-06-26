@@ -18,3 +18,7 @@ test: lint
 build:
 	@echo "Building..."
 	@npm run --silent build
+
+dev-build:
+	@echo "Building..."
+	@npm run dev-build
