@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>reports-js-client</title>
+  </head>
+  <body>
+    <script src="dist/clever-goals.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var goals = new CleverGoals({
+        districtToken: "f2be5777d5aafadf9165c6896bb3c8504bce93c7", // Khan/Goals Demo
+        studentCleverId: "58fe756a070439f03400340e", // Aaron McClure
+        _apiURL: "http://localhost:5020"
+      });
+      goals.startTrackingUsage();
+    </script>
+  </body>
+</html>

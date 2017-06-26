@@ -1,9 +1,24 @@
 import "whatwg-fetch";
 import * as timeme from "timeme.js";
 
+const post = async (path, districtToken, body) => {
+  const resp = await fetch(path, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${districtToken}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!resp.ok) {
+    throw new Error(`Got ${resp.status} from Clever Goals API: ${await resp.text()}`);
+  }
+};
+
 export default class CleverGoals {
   districtToken;
   studentCleverId;
+  apiURL;
   constructor(options) {
     if (!options.districtToken) {
       throw new Error("Missing required option districtToken");
@@ -13,30 +28,44 @@ export default class CleverGoals {
     }
     this.districtToken = options.districtToken;
     this.studentCleverId = options.studentCleverId;
+    // API URL is configurable for testing
+    this.apiURL = options._apiURL || "https://api.clever.com";
   }
 
   async recordCumulativeUsage(value) {
+    await post(
+      `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
+      this.districtToken,
+      { usage: value }
+    );
   }
 
   async recordCumulativeProgress(value) {
+    await post(
+      `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
+      this.districtToken,
+      { progress: value }
+    );
   }
 
-  async recordIncrementalUsage(delta) {
-    const resp = await fetch(`http://localhost:5020/v1.2/students/${this.studentCleverId}/metrics/incremental`, {
-      method: "POST",
-      headers: { Authentication: `Bearer ${this.districtToken}` },
-      body: JSON.stringify({ usage: delta }),
-    });
-    if (!resp.ok) {
-      throw new Error(`Got ${resp.status} from Clever Goals API: ${await resp.text()}`);
-    }
+  async recordIncrementalUsage(value) {
+    await post(
+      `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
+      this.districtToken,
+      { usage: value }
+    );
   }
 
-  async recordIncrementalProgress(delta) {
+  async recordIncrementalProgress(value) {
+    await post(
+      `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
+      this.districtToken,
+      { progress: value }
+    );
   }
 
   startTrackingUsage() {
-    console.log("Clever Goals: Starting usage tracking.");
+    console.log("Clever Goals: Starting usage tracking");
 
     const lock = (() => {
       let locked = false;
