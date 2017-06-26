@@ -5,7 +5,7 @@ const post = async (path, districtToken, body) => {
   const resp = await fetch(path, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${districtToken}`,
+      Authorization: `Bearer ${districtToken}`,
       "Content-type": "application/json",
     },
     body: JSON.stringify(body),
@@ -74,7 +74,9 @@ export default class CleverGoals {
         acquire: () => {
           if (locked) { return false; }
           locked = true;
-          timeout = setTimeout(() => locked = false, 60000); // timeout to release lock
+          timeout = setTimeout(() => {
+            locked = false;
+          }, 60000); // timeout to release lock
           return true;
         },
         release: () => {
@@ -96,13 +98,13 @@ export default class CleverGoals {
     setInterval(async () => {
       if (!lock.acquire()) { return; }
       const currTotalSeconds = timeme.getTimeOnCurrentPageInSeconds();
-      const delta =  currTotalSeconds - totalSecondsSent;
+      const delta = currTotalSeconds - totalSecondsSent;
       if (delta === 0) { return; }
       try {
         await this.recordIncrementalUsage(delta / 60);
         totalSecondsSent = currTotalSeconds;
       } catch (err) {
-        console.error("Clever Goals:", err)
+        console.error("Clever Goals:", err);
       } finally {
         lock.release();
       }
