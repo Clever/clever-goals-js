@@ -38,6 +38,7 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
+    "timeme.js": "^2.0.2",
     "whatwg-fetch": "^2.0.3"
   }
 }
