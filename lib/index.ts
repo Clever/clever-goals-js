@@ -1,11 +1,11 @@
 import "whatwg-fetch";
 import * as timeme from "timeme.js";
 
-const post = async (path, districtToken, body) => {
+const post = async (path, clientId, body) => {
   const resp = await fetch(path, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${districtToken}`,
+      Authorization: `Basic ${btoa(clientId + ":")}`,
       "Content-type": "application/json",
     },
     body: JSON.stringify(body),
@@ -16,17 +16,17 @@ const post = async (path, districtToken, body) => {
 };
 
 export default class CleverGoals {
-  districtToken;
+  clientId;
   studentCleverId;
   apiURL;
   constructor(options) {
-    if (!options.districtToken) {
-      throw new Error("Missing required option districtToken");
+    if (!options.clientId) {
+      throw new Error("Missing required option clientId");
     }
     if (!options.studentCleverId) {
       throw new Error("Missing required option studentCleverId");
     }
-    this.districtToken = options.districtToken;
+    this.clientId = options.clientId;
     this.studentCleverId = options.studentCleverId;
     // API URL is configurable for testing
     this.apiURL = options.apiURL || "https://api.clever.com";
@@ -35,7 +35,7 @@ export default class CleverGoals {
   async recordCumulativeUsage(value) {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
-      this.districtToken,
+      this.clientId,
       { usage: value },
     );
   }
@@ -43,7 +43,7 @@ export default class CleverGoals {
   async recordCumulativeProgress(value) {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/cumulative`,
-      this.districtToken,
+      this.clientId,
       { progress: value },
     );
   }
@@ -51,7 +51,7 @@ export default class CleverGoals {
   async recordIncrementalUsage(value) {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
-      this.districtToken,
+      this.clientId,
       { usage: value },
     );
   }
@@ -59,7 +59,7 @@ export default class CleverGoals {
   async recordIncrementalProgress(value) {
     await post(
       `${this.apiURL}/v1.2/students/${this.studentCleverId}/metrics/incremental`,
-      this.districtToken,
+      this.clientId,
       { progress: value },
     );
   }
