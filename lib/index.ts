@@ -5,7 +5,7 @@ const post = async (path, clientId, body) => {
   const resp = await fetch(path, {
     method: "POST",
     headers: {
-      Authorization: `Basic ${btoa(clientId + ":")}`,
+      Authorization: `Basic ${btoa(`${clientId}:`)}`,
       "Content-type": "application/json",
     },
     body: JSON.stringify(body),
