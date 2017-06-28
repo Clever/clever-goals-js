@@ -108,6 +108,6 @@ export default class CleverGoals {
       } finally {
         lock.release();
       }
-    }, 5000);
+    }, 10000);
   }
 }
