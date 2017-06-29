@@ -10,12 +10,15 @@ Javascript client library for the Clever Goals API.
 
 2. Load the JS library in your HTML:
 
+    ```html
     <script src="clever-goals.js" type="text/javascript"></script>
+    ```
 
 3. Initialize the client, passing in two parameters:
-- `clientId`: Your Clever app client id for authentication
-- `studentCleverId`: The Clever ID of the student that is currently logged into your app.
+    - `clientId`: Your Clever app client id for authentication
+    - `studentCleverId`: The Clever ID of the student that is currently logged into your app.
 
+    ```html
     <script type="text/javascript">
       var goals = new CleverGoals({
         clientId: "abcde12345",
@@ -23,6 +26,7 @@ Javascript client library for the Clever Goals API.
       });
       goals.startTrackingUsage();
     </script>
+    ```
 
 
 ### Interface
@@ -46,9 +50,11 @@ This method is used to track incremental periods of time that the student is eng
 
 Example:
 
-    function handleTimeTrack(seconds, cb) {
-      goals.reportIncrementalUsage(seconds/60).then(cb).catch(cb);
-    }
+```js
+function handleTimeTrack(seconds, cb) {
+  goals.reportIncrementalUsage(seconds/60).then(cb).catch(cb);
+}
+```
 
 ### reportIncrementalProgress(value)
 
@@ -59,9 +65,11 @@ This method is used to track incremental lessons/activities/etc. that the studen
 
 Example:
 
-    function onLessonComplete(cb) {
-      goals.reportIncrementalProgress(1).then(cb).catch(cb);
-    }
+```js
+function onLessonComplete(cb) {
+  goals.reportIncrementalProgress(1).then(cb).catch(cb);
+}
+```
 
 ### reportCumulativeUsage(value)
 
@@ -72,12 +80,14 @@ This method is used to track the overall amount of time the student has been eng
 
 Example:
 
-    setInterval(10000, () => {
-      lookupUsageFromDB((err, minutes) =>
-        if (err) { return handleErr(err); }
-        goals.reportCumulativeUsage(minutes).catch(handleErr);
-      );
-    });
+```js
+setInterval(10000, () => {
+  lookupUsageFromDB((err, minutes) =>
+    if (err) { return handleErr(err); }
+    goals.reportCumulativeUsage(minutes).catch(handleErr);
+  );
+});
+```
 
 ### reportCumulativeProgress(value)
 
@@ -88,12 +98,14 @@ This method is used to track the overall amount of progress the student has made
 
 Example:
 
-    setInterval(10000, () => {
-      lookupLessonsFromDB((err, lessons) =>
-        if (err) { return handleErr(err); }
-        goals.reportCumulativeProgress(lessons.length).catch(handleErr);
-      );
-    });
+```js
+setInterval(10000, () => {
+  lookupLessonsFromDB((err, lessons) =>
+    if (err) { return handleErr(err); }
+    goals.reportCumulativeProgress(lessons.length).catch(handleErr);
+  );
+});
+```
 
 ## Developing
 
@@ -108,7 +120,7 @@ We're always open to improvements/suggestions. Feel free to make a pull request 
     make test
 
 ### Building for local use
-```
-# This will compile lib/ to javascript in the dist/ folder and watch for changes
-make dev-build
-```
+
+This will compile `lib/` to javascript in the `dist/` folder and watch for changes:
+
+    make dev-build
