@@ -1,5 +1,5 @@
 {
-  "name": "reports-js-client",
+  "name": "clever-goals-js",
   "version": "1.0.0",
   "description": "Javascript client library for the public Goals API",
   "main": "dist/clever-goals.js",
@@ -21,7 +21,7 @@
       "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     }
   },
-  "author": "",
+  "author": "Clever",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^18.1.1",
