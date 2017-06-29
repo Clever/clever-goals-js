@@ -6,7 +6,7 @@ Javascript client library for the Clever Goals API.
 
 ### Quickstart
 
-1. Download [clever-goals.js](TODO) and add it to your project.
+1. Download [dist/clever-goals.js](./dist/clever-goals.js) and add it to your project.
 
 2. Load the JS library in your HTML:
 
