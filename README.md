@@ -41,7 +41,7 @@ If you're starting from scratch, we recommend using `startTrackingUsage()` to tr
 
 Begins time tracking for the current student. This should be called on every new page load. When you call `startTrackingUsage()`, the client will begin tracking the time that the student is actively engaged with the page, reporting it to the Clever Goals API every 10 seconds. A student is considered idle (i.e. not actively engaged) if they don't move the mouse or type for 60 seconds, or if they switch to a different tab or app.
 
-### reportIncrementalUsage(value)
+#### reportIncrementalUsage(value)
 
 This method is used to track incremental periods of time that the student is engaged with the app. It's used internally by `startTrackingUsage()`. We only recommend using this method if you have existing time tracking hooks in place in your app, and would like to record those values to Clever Goals in addition to your own backend.
 
@@ -56,7 +56,7 @@ function handleTimeTrack(seconds, cb) {
 }
 ```
 
-### reportIncrementalProgress(value)
+#### reportIncrementalProgress(value)
 
 This method is used to track incremental lessons/activities/etc. that the student completes. You should call this method after a student completes a unit of progress.
 
@@ -71,7 +71,7 @@ function onLessonComplete(cb) {
 }
 ```
 
-### reportCumulativeUsage(value)
+#### reportCumulativeUsage(value)
 
 This method is used to track the overall amount of time the student has been engaged. You should call this method at a regular interval or once at the end of the user's session. Be wary that the user might not end their session cleanly, so this might not be the best strategy.
 
@@ -89,7 +89,7 @@ setInterval(10000, () => {
 });
 ```
 
-### reportCumulativeProgress(value)
+#### reportCumulativeProgress(value)
 
 This method is used to track the overall amount of progress the student has made. You should call this method at a regular interval or once at the end of the user's session. Be wary that the user might not end their session cleanly, so this might not be the best strategy.
 
