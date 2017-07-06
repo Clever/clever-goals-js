@@ -6,16 +6,15 @@ Javascript client library for the Clever Goals API.
 
 ### Quickstart
 
-1. Download [dist/clever-goals.js](./dist/clever-goals.js) and add it to your project.
-
-2. Load the JS library in your HTML:
+1. Load the JS library in your HTML:
 
     ```html
-    <script src="clever-goals.js" type="text/javascript"></script>
+    <script src="https://assets.clever.com/clever-goals.js" type="text/javascript"></script>
     ```
 
-3. Initialize the client, passing in two parameters:
-    - `clientId`: Your Clever app client id for authentication
+2. Initialize the client, passing in two parameters:
+    - `clientId`: Your Clever app client id for identification (this can be
+      found on the settings page of your dashboard).
     - `studentCleverId`: The Clever ID of the student that is currently logged into your app.
 
     ```html
