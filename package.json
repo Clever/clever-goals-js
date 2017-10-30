@@ -1,6 +1,6 @@
 {
   "name": "clever-goals-js",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Javascript client library for the public Goals API",
   "main": "dist/clever-goals.js",
   "scripts": {

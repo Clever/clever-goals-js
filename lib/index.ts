@@ -15,6 +15,8 @@ const post = async (path, clientId, body) => {
   }
 };
 
+const usageIntervalTime = 120000;
+
 export default class CleverGoals {
   clientId;
   studentCleverId;
@@ -108,6 +110,6 @@ export default class CleverGoals {
       } finally {
         lock.release();
       }
-    }, 10000);
+    }, usageIntervalTime);
   }
 }
