@@ -44,3 +44,4 @@ We're always open to improvements/suggestions. Feel free to make a pull request 
 This will compile `lib/` to javascript in the `dist/` folder and watch for changes:
 
     make dev-build
+test
